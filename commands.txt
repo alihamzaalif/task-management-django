@@ -15,3 +15,13 @@ ctrl + shift + P
 
 
 deactivate
+
+git init
+git add .
+git rm --cached db.sqlite3
+git status
+git commit -m "Initial Project Done"
+git push -u origin main
+git branch -M main
+git branch dynamic_urls
+git checkout dynamic_urls

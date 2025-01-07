@@ -17,12 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from tasks.views import home
-from tasks.views import contact
+from tasks.views import contact, show_specific_task
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('home/', home) 
     path('', home), 
     path('contact/', contact),
-    path('tasks/', include('tasks.urls'))
+    path('tasks/', include('tasks.urls')),
+    path('tasks/<int:id>/', show_specific_task)
 ]
