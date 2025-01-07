@@ -1,0 +1,17 @@
+python -m venv task_env
+.\task_env\Scripts\activate
+django-admin startproject task_management .
+python .\manage.py runserver
+
+django-admin startapp tasks
+django-admin startapp users
+
+pip freeze > requirements.txt
+
+pip install -r requirements.txt
+
+
+ctrl + shift + P
+
+
+deactivate
