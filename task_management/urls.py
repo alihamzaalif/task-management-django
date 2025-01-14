@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from tasks.views import home
-from tasks.views import contact, show_specific_task
+from tasks.views import contact, show_specific_task,manager_dashboard
 
 urlpatterns = [
     path('admin/', admin.site.urls),

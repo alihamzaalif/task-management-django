@@ -7,7 +7,8 @@ def home(request):
     # Transform data
     # Data pass
     # http response / json response
-    return HttpResponse("Welcome to the task management system")
+    # return HttpResponse("Welcome to the task management system")
+    return render(request,"home.html")
 
 def contact(request):
     return HttpResponse("<h1 style='color: red'>Welcome to the contact page</h1>")
@@ -19,4 +20,18 @@ def show_specific_task(request,id):
     print("id ", id)
     print("id type ", type(id))
     return HttpResponse(f"This is our dynamic task page {id}")
+
+def manager_dashboard(request):
+    return render(request,'dashboard/manager-dashboard.html')
+
+def user_dashboard(request):
+    return render(request,'dashboard/user-dashboard.html')
+
+def test(request):
+    context = {
+        "names": ["Mahmud","Ahamed","John","Hamza"],
+        "age": 23
+    }
+    return render(request,'test.html',context)
+
     
