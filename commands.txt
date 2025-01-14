@@ -25,3 +25,75 @@ git push -u origin main
 git branch -M main
 git branch dynamic_urls
 git checkout dynamic_urls
+
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py shell
+
+>>> from tasks.models import Task
+>>> t = Task(title="Low Priority Tasks",description="sdf",due_date="2025-2-2")   
+>>> t
+<Task: Task object (None)>
+>>> print(t.task)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Task' object has no attribute 'task'
+>>> print(t)      
+Task object (None)
+>>> print(t.title)  
+Low Priority Tasks
+>>> t.save()
+>>> t = Task(title="High Priority Tasks",description="sdf",due_date="2025-2-2")  
+>>> t.save()
+>>> from tasks.models import TaskDetail
+>>> task = Task.objects.get(id=1)         
+>>> task.title
+'Low Priority Tasks'
+>>> TaskDetail.objects.create(task=task,assigned_to="Hamza",priority="L")
+<TaskDetail: TaskDetail object (1)>
+>>> TaskDetail.objects.create(task=Task.objects.get(id=2),assigned_to="Hamza",priority="H")  
+<TaskDetail: TaskDetail object (2)>
+
+>>> task = Tasks.objects.create(title="Notun Task for Employee", description="Employee Task", due_date="2025-12-12") 
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Tasks' is not defined. Did you mean: 'Task'?
+>>> task = Task.objects.create(title="Notun Task for Employee", description="Employee Task", due_date="2025-12-12")
+>>> task.assigned_to.add(employee) 
+>>> employee1 = Employee.objects.get(id=1)
+>>> employee1
+<Employee: Employee object (1)>
+>>> task.assigned_to.add(employee1) 
+>>> task.assigned_to
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x00000173FDF3C050>
+>>> task.assigned_to.all()  
+<QuerySet [<Employee: Employee object (1)>, <Employee: Employee object (2)>]>
+>>> exit()
+
+>>> from tasks.models import *
+>>> task_detail = TaskDetail.objects.get(id=1)
+>>> task_detail.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'TaskDetail' object has no attribute 'all'
+>>> task_detail
+<TaskDetail: TaskDetail object (1)>
+>>> task_detail.task.title
+'Low Priority Tasks'
+>>> task1 = Task.objects.get(id=1)
+>>> task1.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Task' object has no attribute 'all'
+>>> task1
+<Task: Task object (1)>
+>>> task1.taskdetail    
+<TaskDetail: TaskDetail object (1)>
+>>> task.taskdetail.priority
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'task' is not defined. Did you mean: 'Task'?
+>>> task1.taskdetail.priority  
+'L'
+>>> ^Z
