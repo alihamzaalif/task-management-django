@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% comment %} <div>
+        <ul>
+            {% for task in tasks %}
+                <li>{{task}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        {{task3}}
+    </div>
+    <div>
+        {{first_task}}
+    </div>
+    <div>
+        {% for task in pending_task %}
+            <p>{{task}}</p>
+            <span>{{task.status}}</span>
+        {% endfor %}
+    </div>
+    <div>
+        {% for task in completed_task %}
+            <p>{{task}}</p>
+            <span>{{task.status}}</span>
+        {% endfor %}
+    </div>
+    <div>
+        {% for task in today_pending %}
+            <p>{{task}}</p>
+            <span>DUE TODAY</span>
+        {% endfor %}
+    </div> {% endcomment %}
+    {% comment %} <div>
+        {% for task in task_prty %}
+            <p>{{task.task}}</p>
+            <span>{{task.priority}}</span>
+        {% endfor %}
+    </div> {% endcomment %}
+    <div>
+        {% comment %} {% for task in tasks %}
+            <p>{{task.title}}</p>
+            <span>{{task.details.priority}}</p>
+        {% endfor %} {% endcomment %}
+        {% comment %} {% for task in tasks %}
+            <p>{{task.task.title}}</p>
+            <span>{{task.priority}}</p>
+        {% endfor %} {% endcomment %}
+        {% comment %} {% for task in tasks %}
+            <p>{{task.title}}</p>
+            <span>{{task.project.name}}</p>
+        {% endfor %} {% endcomment %}
+        {% comment %} {% for project in tasks %}
+            <p>{{project.name}}</p>
+            {% for task in project.task_set.all %}
+            <p>{{task.project.name}}</p>
+            {% endfor %}
+            
+        {% endfor %} {% endcomment %}
+         {% comment %} {% for task in tasks %}
+         <li>
+            <p>{{task.title}}</p>
+            {% for emp in task.assigned_to.all %}
+            <p>{{emp.name}}</p>
+            {% endfor %}
+        </li>
+         {% endfor %} {% endcomment %}
+    </div>
+</body>
+</html>

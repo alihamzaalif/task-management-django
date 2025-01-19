@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 from tasks.views import home
 from tasks.views import contact, show_specific_task,manager_dashboard
+from debug_toolbar.toolbar import debug_toolbar_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +27,4 @@ urlpatterns = [
     path('contact/', contact),
     path('tasks/', include('tasks.urls')),
     path('tasks/<int:id>/', show_specific_task)
-]
+]+ debug_toolbar_urls()

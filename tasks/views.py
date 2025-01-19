@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from tasks.forms import TaskForm, TaskModelForm
-from tasks.models import Employee, Task
-
+from tasks.models import Employee, Task, TaskDetail, Project
+from datetime import date
+from django.db.models import Q, Count, Max, Min, Avg
 # Create your views here.
 def home(request):
     # Work with database
@@ -82,4 +83,40 @@ def create_task(request):
         "form":form
     }
     return render(request,"task_form.html",context)
-    
+
+def view_task(request):
+    # # retrieve all data from task models
+    # tasks = Task.objects.all()
+
+    # # retrieve specific task
+    # task3 = Task.objects.get(pk=1)
+
+    # # fetch the first task
+    # first_task = Task.objects.first()
+
+    # pending_task = Task.objects.filter(status='PENDING')
+    # completed_task = Task.objects.filter(status='COMPLETED')
+    # today_pending = Task.objects.filter(due_date=date.today())
+
+    # task_prty = TaskDetail.objects.exclude(priority="L")
+
+    # return render(request, "show_task.html",{"tasks":tasks,"task3":task3,"first_task":first_task,"pending_task":pending_task,"completed_task":completed_task,"today_pending":today_pending,"task_prty":task_prty})
+
+    # SHOW TASKS THAT CONTAIN THE LETTER C AND STATUS PENDING
+    # tasks = Task.objects.filter(title__icontains="c",status="PENDING")
+
+    #SHOW T HE TASSKS THAHT ARE PENDING OR IN-PROGRESS
+
+    # tasks = Task.objects.filter(Q(status="PENDING") | Q(status="IN_PROGRESS"))
+    # tasks = Task.objects.filter(Q(status="PENDING") | Q(status="IN_PROGRESS")).exists()
+    # return render(request,'show_task.html',{"tasks":tasks})
+
+    #  reverse related
+    # tasks = Task.objects.select_related('details').all()
+    # tasks = TaskDetail.objects.select_related('task').all()
+    # tasks = Task.objects.select_related('project').all()
+
+    # Prefetch Related {Reverse Foreignkey, many to many}
+    # tasks = Project.objects.prefetch_related('task_set').all()
+    tasks = Task.objects.prefetch_related('assigned_to').all()
+    return render(request,"show_task.html",{"tasks":tasks})
