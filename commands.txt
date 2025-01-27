@@ -97,3 +97,5 @@ NameError: name 'task' is not defined. Did you mean: 'Task'?
 >>> task1.taskdetail.priority  
 'L'
 >>> ^Z
+
+python manage.py createsuperuser
