@@ -78,7 +78,7 @@ def admin_dashboard(request):
     users = User.objects.prefetch_related(Prefetch('groups', queryset=Group.objects.all(), to_attr='all_groups')).all()
     for user in users:
         if user.all_groups:
-            user.group_name = user.groups.all_groups[0].name
+            user.group_name = user.all_groups[0].name
         else:
             user.group_name = 'No group assigned'
     return render(request, 'admin/dashboard.html', {'users':users})

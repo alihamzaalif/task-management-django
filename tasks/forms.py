@@ -55,21 +55,11 @@ class StyledFormMixin:
 class TaskModelForm(StyledFormMixin, forms.ModelForm):
     class Meta:
         model = Task
-        fields = ['title','description','due_date','assigned_to']
+        fields = ['title','description','due_date', 'assigned_to'] # Add assigned_to later
         widgets = {
             'due_date': forms.SelectDateWidget,
             'assigned_to': forms.CheckboxSelectMultiple
         }
-        """Manual Widget"""
-        # widgets = {
-        #     'title' : forms.TextInput(attrs={'class':"border-2 border-gray-300 w-full p-3 rounded-lg shadow-sm focus:outline-none focus:border-rose-500 focus:ring-rose-500 hover:border-rose-500",'placeholder':'Enter Task Title'}),
-        #     'description': forms.Textarea(attrs={'class':"border-2 border-gray-300 w-full p-3 rounded-lg shadow-sm resize-none focus:outline-none focus:border-rose-500 focus:ring-rose-500 hover:border-rose-500",'placeholder':'Describe the Task'}),
-        #     'due_date':forms.SelectDateWidget(attrs={'class':"border-2 border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:border-rose-500 focus:ring-rose-500 hover:border-rose-500"}),
-        #     'assigned_to':forms.CheckboxSelectMultiple(attrs={'class':"space-y-2"})
-
-        # }
-        # exclude = ['project', 'is_completed', 'created_at', 'updated_at']
-
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -78,7 +68,7 @@ class TaskModelForm(StyledFormMixin, forms.ModelForm):
 class TaskDetailModelForm(StyledFormMixin, forms.ModelForm):
     class Meta:
         model = TaskDetail
-        fields = ['priority','notes']
+        fields = ['priority','notes', 'asset']
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

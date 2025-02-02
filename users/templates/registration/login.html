@@ -1,15 +1,6 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration</title>
-    <link rel="stylesheet" href="{% static "css/output.css" %}">
-</head>
-<body>
-    <h1>Welcome to Authentication System</h1>
-    <div>
+{% extends "base.html" %}
+{% block content %}
+    <div class='mx-auto w-1/2 my-9'>
         {% if messages %}
                 {% for message in messages %}
                     <div class="px-2 py-1 {% if message.tags == 'successs' %}bg-green-500{% endif %} ">{{message}}</div>
@@ -20,8 +11,7 @@
             {% comment %} <input type="text" placeholder="Enter your username" name="username">
             <input type="password" placeholder="Enter your password" name="password"> {% endcomment %}
             {{ form }}
-            <button class="bg-blue-500 px-2 py-1 rounded-sm" type="submit">Sign-up</button>
+            <button class="bg-blue-500 px-2 py-1 rounded text-white mt-3" type="submit">Sign-in</button>
         </form>
     </div>
-</body>
-</html>
+{% endblock content %}

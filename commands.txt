@@ -99,3 +99,4 @@ NameError: name 'task' is not defined. Did you mean: 'Task'?
 >>> ^Z
 
 python manage.py createsuperuser
+python manage.py migrate tasks 0003
